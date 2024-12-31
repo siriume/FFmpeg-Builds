@@ -30,13 +30,3 @@ index 22a9b9e..dfbdaa6 100644
          par->codec_id = AV_CODEC_ID_HEVC;
          vstreami->need_parsing = AVSTREAM_PARSE_HEADERS;
          break;
-@@ -1654,7 +1656,7 @@ retry_duration:
-         }
- 
-             if (st->codecpar->codec_id == AV_CODEC_ID_MPEG4 ||
-                 (st->codecpar->codec_id == AV_CODEC_ID_H264 && (!enhanced_flv || type == PacketTypeCodedFrames)) ||
--                (st->codecpar->codec_id == AV_CODEC_ID_HEVC && type == PacketTypeCodedFrames)) {
-+                (st->codecpar->codec_id == AV_CODEC_ID_HEVC && type == (!enhanced_flv || type == PacketTypeCodedFrames))) {
-                 // sign extension
-                 int32_t cts = (avio_rb24(s->pb) + 0xff800000) ^ 0xff800000;
-                 pts = av_sat_add64(dts, cts);
